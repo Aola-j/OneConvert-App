@@ -16,4 +16,15 @@ background: linear-gradient(180deg, #90DAF2 11.06%, #7FC9E2 26.27%, #90DAF2 41.3
 min-height: 100vh;
 }
 
+/* Custom gradient background for converter card */
+.gradient-card {
+  background: linear-gradient(270deg, #7FC9E2 8.65%, #4389A1 52.88%, #7FC9E2 90.38%);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+   /* Add animation */
+  animation: fadeIn 0.8s ease-out;
+}
+
+
 
