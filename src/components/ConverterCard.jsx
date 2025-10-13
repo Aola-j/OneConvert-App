@@ -4,9 +4,9 @@ import ConvertButton from "./ConvertButton";
 import CurrencySelector from "./CurrencySelector";
 
 function ConverterCard() {
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("EUR");
-  const [fromAmount, setFromAmount] = useState("")
+  const [fromCurrency, setFromCurrency] = useState(() => localStorage.getItem("fromCurrency") || "USD")
+  const [toCurrency, setToCurrency] = useState(() => localStorage.getItem("toCurrency") || "EUR")
+  const [fromAmount, setFromAmount] = useState(() => localStorage.getItem("fromAmount") || "")
   const [toAmount, setToAmount] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -55,12 +55,29 @@ useEffect(() => {
   if (savedAmount) setFromAmount(savedAmount);
 }, []);
 
+// Load saved currencies on startup
+useEffect(() => {
+  const savedFrom = localStorage.getItem("fromCurrency");
+  const savedTo = localStorage.getItem("toCurrency");
+
+  if (savedFrom) setFromCurrency(savedFrom);
+  if (savedTo) setToCurrency(savedTo);
+}, []);
+
+
 // Save user input whenever it changes
 useEffect(() => {
-  if (fromAmount) {
     localStorage.setItem("fromAmount", fromAmount)
-  }
 }, [fromAmount]);
+
+// Save selected currencies when they change
+useEffect(() => {
+  localStorage.setItem("fromCurrency", fromCurrency);
+}, [fromCurrency]);
+
+useEffect(() => {
+  localStorage.setItem("toCurrency", toCurrency);
+}, [toCurrency]);
 
 
 
@@ -86,14 +103,19 @@ useEffect(() => {
       {/* Swap Arrow icon */}
       <div className="flex justify-center my-4 text-3xl font-bold">⇄</div>
 
-      <AmountInput  fromAmount={fromAmount}
+      <AmountInput  
+        fromAmount={fromAmount}
         toAmount={toAmount}
         setFromAmount={setFromAmount}
-        disabled />
+        setToAmount={setToAmount}
+        fromCurrency={fromCurrency}
+        toCurrency={toCurrency}
+        disabled 
+        />
       <ConvertButton  onClick={handleConvert} loading={loading}/>
 
         {error && (
-        <p className="text-red-600 text-center font-medium mt-4">{error}</p>
+        <p className="text-red-500 text-center font-medium text-xs mt-4">{error}</p>
       )}
     </div>
     </div>
