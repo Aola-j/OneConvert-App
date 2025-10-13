@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AmountInput from "./AmountInput";
 import ConvertButton from "./ConvertButton";
 import CurrencySelector from "./CurrencySelector";
@@ -42,6 +42,26 @@ function ConverterCard() {
     setLoading(false);
   }
 };
+
+useEffect(() => {
+    if (fromAmount && !isNaN(fromAmount)) {
+      handleConvert()
+    }
+  }, [fromCurrency, toCurrency, fromAmount]);
+
+  // Load saved amount on startup
+useEffect(() => {
+  const savedAmount = localStorage.getItem("fromAmount")
+  if (savedAmount) setFromAmount(savedAmount);
+}, []);
+
+// Save user input whenever it changes
+useEffect(() => {
+  if (fromAmount) {
+    localStorage.setItem("fromAmount", fromAmount)
+  }
+}, [fromAmount]);
+
 
 
   return (
