@@ -1,4 +1,4 @@
-function AmountInput ({ fromAmount, toAmount, setFromAmount, disabled}) {
+function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCurrency, toCurrency, disabled}) {
     
     //Adding commas for more interactivity
 
@@ -12,14 +12,32 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, disabled}) {
   const handleChange = (e) => {
     const rawValue = e.target.value.replace(/[^0-9.]/g, ""); // remove commas for storage
     setFromAmount(rawValue);
+
+     // If the user deletes everything, clear the "To" field too
+  if (rawValue === "") {
+    setToAmount("");
+  }
   };
     
+   const currencySymbols = {
+    USD: "$",
+    EUR: "€",
+    GBP: "£",
+    NGN: "₦",
+    JPY: "¥",
+    CAD: "C$",
+    AUD: "A$",
+    INR: "₹",
+  };
     
     return (
-        <div>
-            {/* Input fields */}
       <div className="flex justify-between flex-wrap mb-6">
         {/* From amount */}
+
+        <div className="relative">
+        <span className="absolute left-3 top-3 text-gray-700">
+          {currencySymbols[fromCurrency] || ""}
+        </span>
         <input
         type="text"
         min="0"
@@ -27,18 +45,24 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, disabled}) {
         value={formatNumber(fromAmount)}
         onChange={handleChange}
         placeholder=""
-        className="gradient-dropdown p-3 rounded border w-60 md:w-58"
+        className="gradient-dropdown p-3 pl-10 rounded border w-60 md:w-58"
         />
+        </div>
+
         {/* To amount */}
+         <div className="relative">
+        <span className="absolute left-3 top-3 text-gray-700">
+          {currencySymbols[toCurrency] || "€"}
+        </span>
         <input
         type="text"
         value={formatNumber(toAmount)}
         disabled={disabled}
         placeholder=""
-        className="gradient-dropdown p-3 rounded border w-60 md:w-58 text-gray cursor-not-allowed"
+        className="gradient-dropdown p-3 pl-10 rounded border w-60 md:w-58 text-gray cursor-not-allowed"
         />
-      </div>
         </div>
+      </div>
     )
 }
 
