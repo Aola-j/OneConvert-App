@@ -10,12 +10,6 @@ function CurrencySelector () {
             <option>EUR</option>
             <option>GBP</option>
         </select>
-
-         <select className="gradient-dropdown p-3 rounded border w-60 md:w-58">
-            <option>USD</option>
-            <option>EUR</option>
-            <option>GBP</option>
-        </select>
       </div>
         </div>
     )
