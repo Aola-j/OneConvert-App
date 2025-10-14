@@ -5,6 +5,7 @@ function CurrencySelector ({ selectedCurrency, onChange }) {
 const [currencies, setCurrencies] = useState([])
 const [loading, setLoading] = useState(true)
 const [search, setSearch] = useState("")
+const [isOpen, setIsOpen] = useState(false) //toggle dropddown
 
 useEffect(() => {
     const fetchCurrencies = async () => {
@@ -27,39 +28,55 @@ useEffect(() => {
 const filteredCurrencies = currencies.filter((c) => c.toLowerCase().includes(search.toLowerCase()))
 
 // Selected currency visibility
-const displayCurrencies = filteredCurrencies.includes(selectedCurrency)
-    ? filteredCurrencies
-    : [selectedCurrency, ...filteredCurrencies];
+const handleSelect = (currency) => {
+    onChange(currency);
+    setIsOpen(false); // close dropdown after selection
+    setSearch(""); // clear search
+  };
 
+  return (
+    <div className="relative w-60 md:w-58">
+      {/* Dropdown button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="gradient-dropdown p-3 w-full rounded border text-left"
+      >
+        {loading ? "Loading..." : selectedCurrency || "Select currency"}
+        <span className="float-right">▼</span>
+      </button>
 
-    return (
-        <div>
-        <input
-        type="text"
-        placeholder="Search currency..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 rounded w-full mb-2"
-      />
+      {/* Dropdown menu */}
+      {isOpen && (
+        <div className="absolute z-10 w-full mt-2 bg-white border rounded shadow-lg">
+          {/* Search input */}
+          <input
+            type="text"
+            placeholder="Search currency..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="border-b p-2 w-full outline-none"
+          />
 
-      <div className="flex justify-between mb-6">
-        <select 
-        value={selectedCurrency}
-        onChange={(e) => onChange(e.target.value)}
-        className="gradient-dropdown p-3 w-60 md:w-58">
-            {loading ? (
-                <option>Loading...</option>
-            ) : (
-                displayCurrencies.map((currency) => (
-                    <option key={currency} value={currency}>
-                        {currency}
-                    </option>
-                ))
+          {/* Currency list */}
+          <div className="max-h-40 overflow-y-auto">
+            {filteredCurrencies.map((currency) => (
+              <div
+                key={currency}
+                onClick={() => handleSelect(currency)}
+                className="p-2 hover:bg-blue-100 cursor-pointer"
+              >
+                {currency}
+              </div>
+            ))}
+
+            {filteredCurrencies.length === 0 && (
+              <div className="p-2 text-gray-500 text-center">No results</div>
             )}
-        </select>
-      </div>
+          </div>
         </div>
-    )
+      )}
+    </div>
+  );
 }
 
 export default CurrencySelector;
