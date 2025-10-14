@@ -26,6 +26,11 @@ useEffect(() => {
 
 const filteredCurrencies = currencies.filter((c) => c.toLowerCase().includes(search.toLowerCase()))
 
+// Selected currency visibility
+const displayCurrencies = filteredCurrencies.includes(selectedCurrency)
+    ? filteredCurrencies
+    : [selectedCurrency, ...filteredCurrencies];
+
 
     return (
         <div>
@@ -45,7 +50,7 @@ const filteredCurrencies = currencies.filter((c) => c.toLowerCase().includes(sea
             {loading ? (
                 <option>Loading...</option>
             ) : (
-                filteredCurrencies.map((currency) => (
+                displayCurrencies.map((currency) => (
                     <option key={currency} value={currency}>
                         {currency}
                     </option>
