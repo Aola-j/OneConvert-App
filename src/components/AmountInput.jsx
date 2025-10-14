@@ -1,3 +1,5 @@
+import currencySymbols from "../services/currencySymbols";
+
 function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCurrency, toCurrency, disabled}) {
     
     //Adding commas for more interactivity
@@ -19,23 +21,12 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCu
   }
   };
     
-   const currencySymbols = {
-    USD: "$",
-    EUR: "€",
-    GBP: "£",
-    NGN: "₦",
-    JPY: "¥",
-    CAD: "C$",
-    AUD: "A$",
-    INR: "₹",
-  };
-    
     return (
       <div className="flex justify-between flex-wrap mb-6">
         {/* From amount */}
 
         <div className="relative">
-        <span className="absolute left-3 top-3 text-gray-700">
+        <span className="absolute left-3 top-3 text-black">
           {currencySymbols[fromCurrency] || ""}
         </span>
         <input
@@ -51,7 +42,7 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCu
 
         {/* To amount */}
          <div className="relative">
-        <span className="absolute left-3 top-3 text-gray-700">
+        <span className="absolute left-3 top-3 text-black">
           {currencySymbols[toCurrency] || "€"}
         </span>
         <input
