@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 function CurrencySelector ({ selectedCurrency, onChange }) {
 
@@ -6,6 +6,7 @@ const [currencies, setCurrencies] = useState([])
 const [loading, setLoading] = useState(true)
 const [search, setSearch] = useState("")
 const [isOpen, setIsOpen] = useState(false) //toggle dropddown
+const dropdownRef = useRef(null)
 
 useEffect(() => {
     const fetchCurrencies = async () => {
@@ -25,6 +26,18 @@ useEffect(() => {
  fetchCurrencies()
 }, [])
 
+// close dropdown on click outside
+useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
 const filteredCurrencies = currencies.filter((c) => c.toLowerCase().includes(search.toLowerCase()))
 
 // Selected currency visibility
@@ -35,19 +48,29 @@ const handleSelect = (currency) => {
   };
 
   return (
-    <div className="relative w-60 md:w-58">
+    <div ref={dropdownRef} className="relative w-60 md:w-58">
       {/* Dropdown button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="gradient-dropdown p-3 w-full rounded border text-left"
+        className="gradient-dropdown p-3 w-full rounded border text-left flex justify-between items-center transition duration-200 hover:shadow-md"
       >
         {loading ? "Loading..." : selectedCurrency || "Select currency"}
-        <span className="float-right">▼</span>
+        <span className={`transform transition-transform duration-300 ${
+            isOpen ? "rotate-180" : "rotate-0"
+          }`}>
+            ▼
+            </span>
       </button>
 
       {/* Dropdown menu */}
-      {isOpen && (
-        <div className="absolute z-10 w-full mt-2 bg-white border rounded shadow-lg">
+       <div
+        className={`absolute z-10 w-full mt-2 bg-white border rounded shadow-lg transform transition-all duration-300 origin-top ${
+          isOpen
+            ? "opacity-100 scale-y-100"
+            : "opacity-0 scale-y-0 pointer-events-none"
+        }`}
+      >
+
           {/* Search input */}
           <input
             type="text"
@@ -63,7 +86,7 @@ const handleSelect = (currency) => {
               <div
                 key={currency}
                 onClick={() => handleSelect(currency)}
-                className="p-2 hover:bg-blue-100 cursor-pointer"
+                className="p-2 hover:bg-blue-100 cursor-pointer transition-colors"
               >
                 {currency}
               </div>
@@ -74,7 +97,6 @@ const handleSelect = (currency) => {
             )}
           </div>
         </div>
-      )}
     </div>
   );
 }
