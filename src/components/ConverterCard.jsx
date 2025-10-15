@@ -43,11 +43,12 @@ function ConverterCard() {
   }
 };
 
-useEffect(() => {
+// Call on startup
+/*useEffect(() => {
     if (fromAmount && !isNaN(fromAmount)) {
       handleConvert()
     }
-  }, [fromCurrency, toCurrency, fromAmount]);
+  }, [fromCurrency, toCurrency, fromAmount]);*/
 
   // Load saved amount on startup
 useEffect(() => {
