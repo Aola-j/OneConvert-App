@@ -83,15 +83,15 @@ useEffect(() => {
 
 
   return (
-    <div className="gradient-card mt-10 mx-auto max-w-5xl p-10 rounded-lg shadow-lg">
+    <div className="gradient-card mt-10 mx-auto max-w-5xl p-5 rounded-lg shadow-lg">
       <div className="lg:p-10">
       <div className="flex justify-between mb-6">
-        <h3 className="font-semibold text-xl md:text-2xl">From:</h3>
-        <h3 className="font-semibold text-xl md:text-2xl mr-49">To:</h3> 
+        <h3 className="font-medium text-xl md:text-1xl">From:</h3>
+        <h3 className="font-medium text-xl md:text-1xl mr-49">To:</h3> 
       </div>
 
 
-      <div className="flex justify-between mb-6">
+      <div className="flex justify-between flex-wrap mb-6">
         <CurrencySelector selectedCurrency={fromCurrency}
         onChange={setFromCurrency}
         />
