@@ -102,7 +102,24 @@ useEffect(() => {
       
 
       {/* Swap Arrow icon */}
-      <div className="flex justify-center my-4 text-3xl font-bold">⇄</div>
+      <div className="flex justify-center my-4 text-3xl font-bold">
+        <button onClick={() => {
+          const prevFrom = fromCurrency
+          setFromCurrency(toCurrency)
+          setToCurrency(prevFrom);
+
+          if (fromAmount && toAmount) {
+            const prevAmount = fromAmount
+            setFromAmount(toAmount)
+            setToAmount(prevAmount)
+
+          }
+        }}
+        className="text-3xl font-bold transform transition-transform duration-200 hover:scale-125"
+          title="Swap currencies">
+         ⇄ 
+        </button>
+        </div>
 
       <AmountInput  
         fromAmount={fromAmount}
