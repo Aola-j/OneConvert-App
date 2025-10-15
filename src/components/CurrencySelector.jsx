@@ -16,6 +16,7 @@ useEffect(() => {
             "https://v6.exchangerate-api.com/v6/f82a68a26438ec9c57bc940d/latest/USD"
         )
         const data = await res.json()
+        if (data.result === "error") throw new Error("Invalid API response")
         setCurrencies(Object.keys(data.conversion_rates))
     } catch (err) {
         console.error("Error loading currencies", err)
