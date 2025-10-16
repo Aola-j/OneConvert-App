@@ -128,7 +128,7 @@ useEffect(() => {
         setToAmount={setToAmount}
         fromCurrency={fromCurrency}
         toCurrency={toCurrency}
-        disabled 
+        showSymbols={true}
         />
       <ConvertButton  onClick={handleConvert} loading={loading}/>
 

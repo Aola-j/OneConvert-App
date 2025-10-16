@@ -1,6 +1,6 @@
 import currencySymbols from "../services/currencySymbols";
 
-function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCurrency, toCurrency, disabled}) {
+function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCurrency, toCurrency, disabled, showSymbols = true,}) {
     
     //Adding commas for more interactivity
 
@@ -36,21 +36,27 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCu
         value={formatNumber(fromAmount)}
         onChange={handleChange}
         placeholder=""
-        className="gradient-dropdown p-3 pl-10 rounded border w-60 md:w-58"
+        className={`gradient-dropdown p-3 ${
+            showSymbols ? "pl-10" : "pl-3"
+          } rounded border w-60 md:w-58`}
         />
         </div>
 
         {/* To amount */}
          <div className="relative">
-        <span className="absolute left-3 top-3 text-black">
-          {currencySymbols[toCurrency] || "€"}
-        </span>
+         {showSymbols && (
+          <span className="absolute left-3 top-3 text-black">
+            {currencySymbols[toCurrency] || "€"}
+          </span>
+        )}
         <input
         type="text"
         value={formatNumber(toAmount)}
         disabled={disabled}
         placeholder=""
-        className="gradient-dropdown p-3 pl-10 rounded border w-60 md:w-58 text-gray cursor-not-allowed"
+        className={`gradient-dropdown p-3 ${
+            showSymbols ? "pl-10" : "pl-3"
+          } rounded border w-60 md:w-58 text-gray cursor-not-allowed`}
         />
         </div>
       </div>

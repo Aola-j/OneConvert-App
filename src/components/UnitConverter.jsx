@@ -1,8 +1,10 @@
+import UnitConverterCard from "./UnitConverterCard";
+
 function UnitConverter() {
   return (
     <div className="pt-25 px-4">
-      <h2 >Unit Converter</h2>
-      <p>Unit conversion page</p>
+      <h2 className="mt-10 md:ml-10 lg:ml-10 font-semibold md:text-1xl lg:text-2xl">Unit Converter</h2>
+      <UnitConverterCard />
     </div>
   );
 }
