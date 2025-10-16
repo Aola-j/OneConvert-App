@@ -9,7 +9,7 @@ function Navbar () {
           <button className="md:hidden px-2 rounded text-blue-700 font-semibold text-xl">
             ☰
           </button>
-        <img className="w-30 sm:w-28 md:w-30 pt-2 ml-10" src={Logo1} alt="OneConvert Logo"/>
+        <img className="w-20 sm:w-24 md:w-28 ml-10" src={Logo1} alt="OneConvert Logo"/>
         </div>
 
         {/* Navigation links */}
