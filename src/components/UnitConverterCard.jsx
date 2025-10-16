@@ -164,7 +164,7 @@ function UnitConverterCard() {
 
           }
         }}
-        className="text-3xl font-bold transform transition-transform duration-200 hover:scale-125"
+        className="text-2xl w-10 h-10 bg-blue-200/50 font-bold rounded-full transform transition-transform duration-200 hover:scale-125"
           title="Swap units">
          ⇄ 
         </button>

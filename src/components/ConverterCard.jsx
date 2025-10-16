@@ -24,9 +24,11 @@ function ConverterCard() {
   setError("");
   
   try {
-    const res = await fetch(
-      `https://v6.exchangerate-api.com/v6/f82a68a26438ec9c57bc940d/latest/${fromCurrency}`
-    );
+    const API_KEY = import.meta.env.VITE_EXCHANGE_API_KEY;
+const res = await fetch(
+  `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${fromCurrency}`
+);
+
     const data = await res.json();
 
     if (data.result === "error") {
@@ -82,7 +84,6 @@ useEffect(() => {
 useEffect(() => {
   localStorage.setItem("toCurrency", toCurrency);
 }, [toCurrency]);
-
 
 
   return (
