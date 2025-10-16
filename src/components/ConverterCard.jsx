@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AmountInput from "./AmountInput";
 import ConvertButton from "./ConvertButton";
 import CurrencySelector from "./CurrencySelector";
+import CurrencyInfoCard from "./CurrencyInfoCard";
 
 function ConverterCard() {
   const [fromCurrency, setFromCurrency] = useState(() => localStorage.getItem("fromCurrency") || "USD")
@@ -10,6 +11,7 @@ function ConverterCard() {
   const [toAmount, setToAmount] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [exchangeRate, setExchangeRate] = useState(null);
 
   {/* Handling conversion*/}
   const handleConvert = async () => {
@@ -33,6 +35,7 @@ function ConverterCard() {
     }
 
     const rate = data.conversion_rates[toCurrency];
+    setExchangeRate(rate);
     const convertedValue = (parseFloat(fromAmount) * rate).toFixed(2);
     setToAmount(convertedValue);
   } catch (err) {
@@ -132,10 +135,19 @@ useEffect(() => {
         />
       <ConvertButton  onClick={handleConvert} loading={loading}/>
 
+
         {error && (
         <p className="text-red-500 text-center font-medium text-xs mt-4">{error}</p>
       )}
     </div>
+    {/* Currency info section */}
+<CurrencyInfoCard
+  fromCurrency={fromCurrency}
+  toCurrency={toCurrency}
+  exchangeRate={exchangeRate}
+  lastUpdated={new Date().toLocaleString()}
+/>
+
     </div>
   );
 }
