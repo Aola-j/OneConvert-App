@@ -3,7 +3,7 @@ import Logo1 from "../assets/Logo1.png"
 
 function Navbar () {
     return (
-        <nav className="flex p-px  items-center bg-blue-300/80 shadow-sm fixed top-0 left-0 w-full z-50">
+        <nav className="flex p-px  items-center bg-white/80 shadow-sm fixed top-0 left-0 w-full z-50">
         <div className="flex items-center space-x-3" >
             {/* Mobile menu button (hamburger) */}
           <button className="md:hidden px-2 rounded text-blue-700 font-semibold text-xl">
