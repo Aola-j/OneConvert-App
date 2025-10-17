@@ -10,6 +10,7 @@ OneConvert allows users to switch between currency conversion (powered by a live
 ### 💱 Currency Converter
 - Real-time exchange rate conversion using [ExchangeRate API](https://www.exchangerate-api.com/).  
 - Supports multiple currencies (USD, EUR, GBP, NGN, JPY, etc.).  
+- Search functionality to easily search for currencies by currency tag or country name.
 - Swap button to instantly switch between base and target currencies.  
 - Displays the last updated date and conversion rate information.  
 
