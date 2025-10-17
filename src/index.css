@@ -38,7 +38,7 @@ transition: background 0.3s ease, box-shadow 0.3s ease
 
 /* Hover effect */
 .gradient-dropdown:hover {
-  background: rgba(200, 220, 230, 0.75);
+  background: rgba(150, 215, 247, 0.856);
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.35);
   border-color: #4389A1;
 }

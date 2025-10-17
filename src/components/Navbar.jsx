@@ -6,14 +6,14 @@ function Navbar () {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <nav className="flex p-px  items-center bg-white/80 shadow-sm fixed top-0 left-0 w-full z-50">
+        <nav className="flex p-2  items-center bg-white/80 shadow-sm fixed top-0 left-0 w-full z-50">
         <div className="flex items-center space-x-3" >
             {/* Mobile menu button (hamburger) */}
-          <button className="md:hidden px-2 rounded text-blue-700 font-semibold text-xl"
+          <button className="md:hidden px-2 rounded text-blue-700 font-semibold text-3xl"
           onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? "✕" : "☰"} 
           </button>
-        <img className="w-16 sm:w-20 md:w-24 ml-4" src={Logo1} alt="OneConvert Logo"/>
+        <img className="w-20 md:w-28 ml-4" src={Logo1} alt="OneConvert Logo"/>
         </div>
 
         {/* Navigation links */}

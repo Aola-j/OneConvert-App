@@ -89,19 +89,21 @@ useEffect(() => {
   return (
     <div className="gradient-card mt-10 mx-auto max-w-5xl p-5 rounded-lg shadow-lg">
       <div className="lg:p-10">
-      <div className="flex justify-between mb-6">
-        <h3 className="font-medium text-xl md:text-1xl">From:</h3>
-        <h3 className="font-medium text-xl md:text-1xl mr-49">To:</h3> 
-      </div>
-
 
       <div className="flex md:justify-between justify-center flex-wrap mb-6">
+        <div>
+        <h3 className="font-medium text-lg md:text-1xl">From:</h3>
         <CurrencySelector selectedCurrency={fromCurrency}
         onChange={setFromCurrency}
         />
+        </div>
+        <div>
+      <h3 className="font-medium text-lg md:text-1xl">To:</h3>
       <CurrencySelector selectedCurrency={toCurrency}
       onChange={setToCurrency}
       />
+        </div>
+       
       </div>
       
 
@@ -119,7 +121,7 @@ useEffect(() => {
 
           }
         }}
-        className="text-2xl w-10 h-10 bg-blue-200/50 font-bold rounded-full transform transition-transform duration-200 hover:scale-125"
+        className="text-2xl text-blue-700 w-10 h-10 bg-blue-200/50 font-bold rounded-full transform transition-transform duration-200 hover:scale-125"
           title="Swap currencies">
          ⇄ 
         </button>

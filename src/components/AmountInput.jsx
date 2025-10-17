@@ -25,7 +25,7 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCu
       <div className="flex md:justify-between justify-center flex-wrap mb-6">
         {/* From amount */}
 
-        <div className="relative">
+        <div className="relative mb-4">
         <span className="absolute left-3 top-3 text-black">
           {currencySymbols[fromCurrency] || ""}
         </span>
