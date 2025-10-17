@@ -137,7 +137,7 @@ function UnitConverterCard() {
         </div>
 
         {/* Unit selectors */}
-        <div className="flex justify-between mb-6">
+        <div className="flex md:justify-between justify-center flex-wrap mb-6">
           <UnitSelector
             selectedUnit={fromUnit}
             onChange={setFromUnit}
@@ -177,6 +177,7 @@ function UnitConverterCard() {
           setFromAmount={setFromAmount}
           setToAmount={setToAmount}
           showSymbols={false}
+          disabled
         />
 
         {/* Convert button */}

@@ -22,7 +22,7 @@ function AmountInput ({ fromAmount, toAmount, setFromAmount, setToAmount, fromCu
   };
     
     return (
-      <div className="flex justify-between flex-wrap mb-6">
+      <div className="flex md:justify-between justify-center flex-wrap mb-6">
         {/* From amount */}
 
         <div className="relative">

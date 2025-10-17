@@ -95,7 +95,7 @@ useEffect(() => {
       </div>
 
 
-      <div className="flex justify-between flex-wrap mb-6">
+      <div className="flex md:justify-between justify-center flex-wrap mb-6">
         <CurrencySelector selectedCurrency={fromCurrency}
         onChange={setFromCurrency}
         />
@@ -133,6 +133,7 @@ useEffect(() => {
         fromCurrency={fromCurrency}
         toCurrency={toCurrency}
         showSymbols={true}
+        disabled
         />
       <ConvertButton  onClick={handleConvert} loading={loading}/>
 
